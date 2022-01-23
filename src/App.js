@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import Search from './components/Search.component';
 import Table from './components/Table.component';
 
@@ -21,8 +21,30 @@ const App = () => {
       objectID: 1,
     },
   ];
+  const DEFAULT_QUERY = 'redux';
+  const PATH_BASE = 'https://hn.algolia.com/api/v1';
+  const PATH_SEARCH = '/search';
+  const PARAM_SEARCH = 'query=';
+  const PATH_URL = `${PATH_BASE}${PATH_SEARCH}${PARAM_SEARCH}${DEFAULT_QUERY}`;
+
   const [list, setList] = useState(listObj);
-  const [searchTerm, setSearchTerm] = useState('');
+  const [searchTerm, setSearchTerm] = useState(DEFAULT_QUERY);
+  const [result, setResult] = useState(null);
+
+  const setSearchTopStories = (result) => {
+    setResult({ result });
+  };
+
+  useEffect(() => {
+    fetch(`${PATH_BASE}${PATH_SEARCH}${PARAM_SEARCH}${searchTerm}`)
+      .then((response) => response.json())
+      .then((result) => setSearchTopStories(result))
+      .catch((error) => error);
+  }, [searchTerm]);
+
+  const onSearchChange = (e) => {
+    setSearchTerm(e.target.value);
+  };
 
   const onDelete = (id) => {
     const isNotId = (item) => item.objectID !== id;
@@ -31,12 +53,12 @@ const App = () => {
     setList(updateList);
   };
 
-  const onSearchChange = (e) => {
-    setSearchTerm(e.target.value);
-  };
-
   const isSearched = (searchTerm) => (item) =>
     item.title.toLowerCase().includes(searchTerm.toLowerCase());
+
+  if (!result) {
+    return null;
+  }
 
   return (
     <div className='page'>
@@ -45,7 +67,7 @@ const App = () => {
       </div>
 
       <Table
-        list={list}
+        list={result.hits}
         pattern={searchTerm}
         onDelete={onDelete}
         isSearched={isSearched}
