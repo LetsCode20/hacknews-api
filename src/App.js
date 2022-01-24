@@ -12,32 +12,41 @@ const App = () => {
   const PARAM_SEARCH = 'query=';
   const PARAM_PAGE = 'page=';
   const PARAM_HPP = 'hitsPerPage=';
-  const DEFAULT_HPP = '';
 
   const [searchTerm, setSearchTerm] = useState(DEFAULT_QUERY);
-  const [result, setResult] = useState(null);
-  let page = 0;
+  const [results, setResults] = useState(null);
+  const [searchKey, setSearchKey] = useState('');
+
   // const PATH_URL = `${PATH_BASE}${PATH_SEARCH}?${PARAM_SEARCH}${searchTerm}&${PARAM_PAGE}${page}`;
-
-  const setSearchTopStories = (result) => {
-    const { hits, page } = result;
-
-    const oldHits = page !== 0 ? result.hits : [];
-    const updatehits = [...oldHits, ...hits];
-
-    setResult({ hits: updatehits, page });
-  };
+  const page = (results && results[searchKey] && results[searchKey].page) || 0;
+  const list = (results && results[searchKey] && results[searchKey].hits) || [];
 
   const onSearchChange = (e) => {
     setSearchTerm(e.target.value);
   };
 
   const onDelete = (id) => {
-    const isNotId = (item) => item.objectID !== id;
+    const { hits, page } = results[searchKey];
 
-    const updatehits = result.hits.filter(isNotId);
-    const updateResult = { ...result, hits: updatehits };
-    setResult(updateResult);
+    const isNotId = (item) => item.objectID !== id;
+    const updatehits = hits.filter(isNotId);
+    const updateResult = {
+      ...results,
+      [searchKey]: { hits: updatehits, page },
+    };
+
+    setResults(updateResult);
+  };
+
+  const needToSearchTopStories = (searchTerm) => !results[searchTerm];
+
+  const setSearchTopStories = (result) => {
+    const { hits, page } = result;
+
+    const oldHits = results && results[searchKey] ? result[searchKey].hits : [];
+    const updatehits = [...oldHits, ...hits];
+
+    setResults({ ...results, [searchKey]: { hits: updatehits, page } });
   };
 
   const fetchSearchTopStories = (searchTerm, page = 0) => {
@@ -49,23 +58,37 @@ const App = () => {
       .catch((error) => error);
   };
 
+  const onSearchSubmit = (event) => {
+    event.preventDefault();
+    setSearchKey(searchTerm);
+
+    if (needToSearchTopStories(searchTerm)) {
+      fetchSearchTopStories(searchTerm);
+    }
+  };
+
   useEffect(() => {
     fetchSearchTopStories(searchTerm);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [searchTerm]);
 
   return (
     <div className='page'>
       <div className='interactions'>
-        <Search value={searchTerm} onChange={onSearchChange}>
+        <Search
+          value={searchTerm}
+          onChange={onSearchChange}
+          onSubmit={onSearchSubmit}
+        >
           Search
         </Search>
       </div>
 
-      {result && <Table list={result.hits} onDelete={onDelete} />}
+      {results && <Table list={list} onDelete={onDelete} />}
 
       <div className='interactions'>
         <Button onClick={() => fetchSearchTopStories(searchTerm, page + 1)}>
-          More
+          Click to See More
         </Button>
       </div>
     </div>
