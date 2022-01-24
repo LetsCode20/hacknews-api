@@ -1,10 +1,10 @@
 import React from 'react';
 import Button from './Button.component';
 
-const Table = ({ list, pattern, onDelete, isSearched }) => {
+const Table = ({ list, onDelete }) => {
   return (
     <div className='table'>
-      {list.filter(isSearched(pattern)).map((item) => (
+      {list.map((item) => (
         <div key={item.objectID} className='table-row'>
           <span>
             <a href={item.url} target='_blank' rel='noreferrer'>
