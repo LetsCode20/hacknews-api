@@ -1,0 +1,278 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`App has a valid snapshot 1`] = `
+<div
+  className="page"
+>
+  <div
+    className="interactions"
+  >
+    <form
+      onSubmit={[Function]}
+    >
+      <input
+        onChange={[Function]}
+        type="text"
+        value="redux"
+      />
+      <button>
+        Search
+      </button>
+    </form>
+  </div>
+  <div
+    className="interactions"
+  >
+    <button
+      onClick={[Function]}
+      type="button"
+    >
+      Click to See More
+    </button>
+  </div>
+</div>
+`;
+
+exports[`Button has a valid snapshot 1`] = `
+<button
+  type="button"
+>
+  Click to See More
+</button>
+`;
+
+exports[`Search has a valid snapshot 1`] = `
+<form>
+  <input
+    type="text"
+  />
+  <button>
+    Search
+  </button>
+</form>
+`;
+
+exports[`Table has a valid snapshot 1`] = `
+<div
+  className="table"
+>
+  <div
+    className="table-row"
+  >
+    <span>
+      <a
+        rel="noreferrer"
+        target="_blank"
+      >
+        1
+      </a>
+    </span>
+    <br />
+    <span>
+      1
+    </span>
+    <br />
+    <span>
+      1
+    </span>
+    <br />
+    <span>
+      2
+    </span>
+    <br />
+    <span>
+      <button
+        className="button-inline"
+        onClick={[Function]}
+        type="button"
+      >
+        Delete
+      </button>
+    </span>
+  </div>
+  <div
+    className="table-row"
+  >
+    <span>
+      <a
+        rel="noreferrer"
+        target="_blank"
+      >
+        2
+      </a>
+    </span>
+    <br />
+    <span>
+      2
+    </span>
+    <br />
+    <span>
+      2
+    </span>
+    <br />
+    <span>
+      2
+    </span>
+    <br />
+    <span>
+      <button
+        className="button-inline"
+        onClick={[Function]}
+        type="button"
+      >
+        Delete
+      </button>
+    </span>
+  </div>
+</div>
+`;
+
+exports[`Table shows a valid snapshot 1`] = `
+<div
+  className="table"
+>
+  <div
+    className="table-row"
+  >
+    <span>
+      <a
+        rel="noreferrer"
+        target="_blank"
+      >
+        1
+      </a>
+    </span>
+    <br />
+    <span>
+      1
+    </span>
+    <br />
+    <span>
+      1
+    </span>
+    <br />
+    <span>
+      2
+    </span>
+    <br />
+    <span>
+      <button
+        className="button-inline"
+        onClick={[Function]}
+        type="button"
+      >
+        Delete
+      </button>
+    </span>
+  </div>
+  <div
+    className="table-row"
+  >
+    <span>
+      <a
+        rel="noreferrer"
+        target="_blank"
+      >
+        2
+      </a>
+    </span>
+    <br />
+    <span>
+      2
+    </span>
+    <br />
+    <span>
+      2
+    </span>
+    <br />
+    <span>
+      2
+    </span>
+    <br />
+    <span>
+      <button
+        className="button-inline"
+        onClick={[Function]}
+        type="button"
+      >
+        Delete
+      </button>
+    </span>
+  </div>
+</div>
+`;
+
+exports[`Table shows two items in alist 1`] = `
+<div
+  className="table"
+>
+  <div
+    className="table-row"
+  >
+    <span>
+      <a
+        rel="noreferrer"
+        target="_blank"
+      >
+        1
+      </a>
+    </span>
+    <br />
+    <span>
+      1
+    </span>
+    <br />
+    <span>
+      1
+    </span>
+    <br />
+    <span>
+      2
+    </span>
+    <br />
+    <span>
+      <button
+        className="button-inline"
+        onClick={[Function]}
+        type="button"
+      >
+        Delete
+      </button>
+    </span>
+  </div>
+  <div
+    className="table-row"
+  >
+    <span>
+      <a
+        rel="noreferrer"
+        target="_blank"
+      >
+        2
+      </a>
+    </span>
+    <br />
+    <span>
+      2
+    </span>
+    <br />
+    <span>
+      2
+    </span>
+    <br />
+    <span>
+      2
+    </span>
+    <br />
+    <span>
+      <button
+        className="button-inline"
+        onClick={[Function]}
+        type="button"
+      >
+        Delete
+      </button>
+    </span>
+  </div>
+</div>
+`;

@@ -1,23 +1,24 @@
 import React, { useEffect, useState } from 'react';
-import Button from './components/Button.component';
-import Search from './components/Search.component';
-import Table from './components/Table.component';
+import axios from 'axios';
+import Button from '../Button/Button.component';
+import Search from '../Search/Search.component';
+import Table from '../Table/Table.component';
+import {
+  DEFAULT_QUERY,
+  DEFAULT_HPP,
+  PATH_BASE,
+  PATH_SEARCH,
+  PARAM_SEARCH,
+  PARAM_PAGE,
+  PARAM_HPP,
+} from '../../constants/constants';
 
 const App = () => {
-  const DEFAULT_QUERY = 'redux';
-  const DEFAULT_HPP = '100';
-
-  const PATH_BASE = 'https://hn.algolia.com/api/v1';
-  const PATH_SEARCH = '/search';
-  const PARAM_SEARCH = 'query=';
-  const PARAM_PAGE = 'page=';
-  const PARAM_HPP = 'hitsPerPage=';
-
   const [searchTerm, setSearchTerm] = useState(DEFAULT_QUERY);
   const [results, setResults] = useState(null);
   const [searchKey, setSearchKey] = useState('');
+  const [error, setError] = useState(null);
 
-  // const PATH_URL = `${PATH_BASE}${PATH_SEARCH}?${PARAM_SEARCH}${searchTerm}&${PARAM_PAGE}${page}`;
   const page = (results && results[searchKey] && results[searchKey].page) || 0;
   const list = (results && results[searchKey] && results[searchKey].hits) || [];
 
@@ -50,12 +51,11 @@ const App = () => {
   };
 
   const fetchSearchTopStories = (searchTerm, page = 0) => {
-    fetch(
+    axios(
       `${PATH_BASE}${PATH_SEARCH}?${PARAM_SEARCH}${searchTerm}&${PARAM_PAGE}${page}&${PARAM_HPP}${DEFAULT_HPP}`
     )
-      .then((response) => response.json())
-      .then((result) => setSearchTopStories(result))
-      .catch((error) => error);
+      .then((result) => setSearchTopStories(result.data))
+      .catch((error) => setError(error));
   };
 
   const onSearchSubmit = (event) => {
@@ -83,9 +83,13 @@ const App = () => {
           Search
         </Search>
       </div>
-
-      {results && <Table list={list} onDelete={onDelete} />}
-
+      {error ? (
+        <div className='interactions'>
+          <p>Something went wrong.</p>
+        </div>
+      ) : (
+        results && <Table list={list} onDelete={onDelete} />
+      )}
       <div className='interactions'>
         <Button onClick={() => fetchSearchTopStories(searchTerm, page + 1)}>
           Click to See More
