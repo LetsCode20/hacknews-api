@@ -4,6 +4,40 @@ exports[`Table has a valid snapshot 1`] = `
 <div
   className="table"
 >
+  <div>
+    <span>
+      <button
+        onClick={[Function]}
+        type="button"
+      >
+        Title
+      </button>
+    </span>
+    <span>
+      <button
+        onClick={[Function]}
+        type="button"
+      >
+        Author
+      </button>
+    </span>
+    <span>
+      <button
+        onClick={[Function]}
+        type="button"
+      >
+        Comments
+      </button>
+    </span>
+    <span>
+      <button
+        onClick={[Function]}
+        type="button"
+      >
+        Points
+      </button>
+    </span>
+  </div>
   <div
     className="table-row"
   >

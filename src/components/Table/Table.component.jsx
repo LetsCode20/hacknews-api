@@ -2,11 +2,47 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import Button from '../Button/Button.component';
+import { SORTS } from '../../constants/constants';
+import Sort from '../Sort/Sort.component';
 
-const Table = ({ list, onDelete }) => {
+const Table = ({
+  list,
+  page,
+  onPaginatedSearch,
+  onSort,
+  isSortReverse,
+  sortKey,
+  onDelete,
+}) => {
+  const sortedList = SORTS[sortKey](list);
+  const reverseSortedList = isSortReverse ? sortedList.reverse() : sortedList;
+
   return (
     <div className='table'>
-      {list.map((item) => (
+      <div>
+        <span>
+          <Sort sortKey='TITLE' onSort={onSort}>
+            Title
+          </Sort>
+        </span>
+        <span>
+          <Sort sortKey='AUTHOR' onSort={onSort}>
+            Author
+          </Sort>
+        </span>
+        <span>
+          <Sort sortKey='COMMENTS' onSort={onSort}>
+            Comments
+          </Sort>
+        </span>
+        <span>
+          <Sort sortKey='POINTS' onSort={onSort}>
+            Points
+          </Sort>
+        </span>
+      </div>
+
+      {reverseSortedList.map((item) => (
         <div key={item.objectID} className='table-row'>
           <span>
             <a href={item.url} target='_blank' rel='noreferrer'>
@@ -44,7 +80,7 @@ Table.propTypes = {
       points: PropTypes.number,
     })
   ).isRequired,
-  onDismiss: PropTypes.func.isRequired,
+  onDelete: PropTypes.func.isRequired,
 };
 
 export default Table;
