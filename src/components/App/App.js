@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
+import './App.css';
+
 import Search from '../Search/Search.component';
 import Table from '../Table/Table.component';
 import { ButtonWithLoading } from '../../utils/withLoading';
@@ -17,7 +19,6 @@ const App = () => {
   const [isSortReverse, setIsSortReverse] = useState(false);
 
   const page = (results && results[searchKey] && results[searchKey].page) || 0;
-
   const list = (results && results[searchKey] && results[searchKey].hits) || [];
 
   const onSort = (sortKeyArg) => {
@@ -27,10 +28,7 @@ const App = () => {
   };
 
   const onSearchChange = (e) => {
-    if (e.target.value) {
-      setSearchTerm(e.target.value);
-    }
-    return;
+    setSearchTerm(e.target.value);
   };
 
   const onDelete = (id) => {
@@ -47,8 +45,6 @@ const App = () => {
     setResults(updateResult);
   };
 
-  const needToSearchTopStories = (searchTerm) => !results[searchTerm];
-
   const applyUpdateResult = (result) => (prevState) => ({
     [searchKey]: {
       ...prevState.hits,
@@ -63,6 +59,8 @@ const App = () => {
       page: result.page,
     },
   });
+
+  const needToSearchTopStories = (searchTerm) => !results[searchTerm];
 
   const setSearchTopStories = (result) => {
     const { hits, page } = result;

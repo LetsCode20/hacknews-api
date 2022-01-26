@@ -19,51 +19,66 @@ const Table = ({
 
   return (
     <div className='table'>
-      <div>
-        <span>
-          <Sort sortKey='TITLE' onSort={onSort}>
-            Title
-          </Sort>
-        </span>
-        <span>
-          <Sort sortKey='AUTHOR' onSort={onSort}>
-            Author
-          </Sort>
-        </span>
-        <span>
-          <Sort sortKey='COMMENTS' onSort={onSort}>
-            Comments
-          </Sort>
-        </span>
-        <span>
-          <Sort sortKey='POINTS' onSort={onSort}>
-            Points
-          </Sort>
-        </span>
-      </div>
+      {list.length ? (
+        <div className='sort'>
+          <span>
+            <Sort sortKey='TITLE' onSort={onSort}>
+              Title
+            </Sort>
+          </span>
+          <span>
+            <Sort sortKey='AUTHOR' onSort={onSort}>
+              Author
+            </Sort>
+          </span>
+          <span>
+            <Sort sortKey='COMMENTS' onSort={onSort}>
+              Comments
+            </Sort>
+          </span>
+          <span>
+            <Sort sortKey='POINTS' onSort={onSort}>
+              Points
+            </Sort>
+          </span>
+        </div>
+      ) : null}
 
       {reverseSortedList.map((item) => (
         <div key={item.objectID} className='table-row'>
-          <span>
-            <a href={item.url} target='_blank' rel='noreferrer'>
-              {item.title}
-            </a>
-          </span>
-          <br />
-          <span>{item.author}</span>
-          <br />
-          <span>{item.num_comments}</span>
-          <br />
-          <span>{item.points}</span>
-          <br />
-          <span>
-            <Button
-              onClick={() => onDelete(item.objectID)}
-              className='button-inline'
-            >
-              Delete
-            </Button>
-          </span>
+          <div className='table-column'>
+            <span>
+              <b>Title:</b>
+              <a href={item.url} target='_blank' rel='noreferrer'>
+                {item.title}
+              </a>
+            </span>
+          </div>
+          <div>
+            <span>
+              <b>Author:</b> {item.author}
+            </span>
+          </div>
+          <div>
+            <span>
+              <b>Comments:</b> {item.num_comments}
+            </span>
+          </div>
+          <div>
+            <span>
+              <b>Points:</b> {item.points}
+            </span>
+          </div>
+          <div>
+            <span>
+              <Button
+                onClick={() => onDelete(item.objectID)}
+                className='button-inline'
+              >
+                Delete
+              </Button>
+            </span>
+          </div>
         </div>
       ))}
     </div>
