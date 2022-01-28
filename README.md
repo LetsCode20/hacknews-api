@@ -1,6 +1,6 @@
 # Welcome to Hacker News Stories
 
-Recipe App is written in **React.js**
+Hacker News Stories is written in **React.js**
 
 ## Libraries
 
@@ -26,5 +26,5 @@ To visite Our Hacker News Stories App: <a href="https://yassine-hacker-news-api.
 
 ![Hacker News App Result Preview](./src/assets/yassine-hacker-news-api-result.png)
 
-- Search for your the topics that you want.
+- Search for the topics that you want.
 - The API That I used [Hacker News API](https://hn.algolia.com/api/v1).
