@@ -16,7 +16,7 @@ You can use it to conduct unit tests to complement your snapshot tests in React.
 - Lodash
 ```
 
-To visite Our Hacker News Stories App: <a href="https://yassine-hacker-news-api.netlify.app/" target="_blank">Hacker News</a>
+To visite Our Hacker News Stories App: <a href="https://yassinehackernews.netlify.app/" target="_blank">Hacker News</a>
 
 ### First Seach for your favorite topics
 
@@ -28,3 +28,5 @@ To visite Our Hacker News Stories App: <a href="https://yassine-hacker-news-api.
 
 - Search for the topics that you want.
 - The API That I used [Hacker News API](https://hn.algolia.com/api/v1).
+- Hope you like it.
+- Follow me on instagram: <a href='https://www.instagram.com/yassinecode/' alt='yassinecode'>@yassinecode</a>
